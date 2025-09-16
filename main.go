@@ -190,7 +190,7 @@ func main() {
 
 	results := make(map[string]IPResult)
 	progressBar := pb.StartNew(len(ipsToPing))
-	progressBar.SetMaxWidth(115)
+	progressBar.SetMaxWidth(80)
 	progressBar.Start()
 
 	var wg sync.WaitGroup
@@ -221,8 +221,9 @@ func main() {
 		displayListResults(results, sortedIPs)
 	}
 
-	fmt.Printf("\nTotal Responding IPs: %d\n", len(results))
-	fmt.Printf("Total time taken: %s\n", time.Since(startTime))
+	fmt.Printf("\nTotal IPs: %d\n", len(results))
+	totalSeconds := time.Since(startTime).Seconds()
+	fmt.Printf("Total Time: %.1fs\n", totalSeconds)
 }
 
 func displayTableResults(results map[string]IPResult, sortedIPs []string) {
