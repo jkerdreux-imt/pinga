@@ -2,7 +2,7 @@
 
 Pinga is a simple Go command line program that spawns a lot of ping command to scan a network quickly.
 
-  ![Pinga](./shot.jpg)
+  ![Pinga](./shot.png)
 
 
 ## Installation
