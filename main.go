@@ -15,7 +15,8 @@ import (
 
 	"github.com/cheggaaa/pb/v3"
 	"github.com/fatih/color"
-	"github.com/olekukonko/tablewriter"
+	"github.com/jedib0t/go-pretty/v6/table"
+	"github.com/jedib0t/go-pretty/v6/text"
 )
 
 type IPResult struct {
@@ -220,21 +221,22 @@ func main() {
 		displayListResults(results, sortedIPs)
 	}
 
-	fmt.Printf("\n\nTotal Responding IPs: %d\n", len(results))
+	fmt.Printf("\nTotal Responding IPs: %d\n", len(results))
 	fmt.Printf("Total time taken: %s\n", time.Since(startTime))
 }
 
 func displayTableResults(results map[string]IPResult, sortedIPs []string) {
-	table := tablewriter.NewWriter(os.Stdout)
-	table.SetAutoFormatHeaders(false)
-	table.SetHeader([]string{"IP", "Hostname", "Average RTT", "TXT Records", "IPv6 Addresses"})
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.SetStyle(table.StyleLight)
+	t.AppendHeader(table.Row{"IP", "Hostname", "Average RTT", "TXT Records", "IPv6 Addresses"})
 
-	table.SetColumnAlignment([]int{
-		tablewriter.ALIGN_LEFT,
-		tablewriter.ALIGN_LEFT,
-		tablewriter.ALIGN_RIGHT,
-		tablewriter.ALIGN_LEFT,
-		tablewriter.ALIGN_LEFT,
+	t.SetColumnConfigs([]table.ColumnConfig{
+		{Number: 1, Align: text.AlignLeft},
+		{Number: 2, Align: text.AlignLeft},
+		{Number: 3, Align: text.AlignRight},
+		{Number: 4, Align: text.AlignLeft},
+		{Number: 5, Align: text.AlignLeft},
 	})
 
 	for _, ip := range sortedIPs {
@@ -244,7 +246,7 @@ func displayTableResults(results map[string]IPResult, sortedIPs []string) {
 		txtRecords := strings.Join(data.TXTRecords, "\n")
 		ipv6Addresses := strings.Join(data.IPv6Addresses, "\n")
 
-		table.Append([]string{
+		t.AppendRow(table.Row{
 			color.BlueString(ip),
 			hostname,
 			averageRTT,
@@ -252,7 +254,7 @@ func displayTableResults(results map[string]IPResult, sortedIPs []string) {
 			ipv6Addresses,
 		})
 	}
-	table.Render()
+	t.Render()
 }
 
 func displayListResults(results map[string]IPResult, sortedIPs []string) {
