@@ -1,4 +1,4 @@
-module jkerdreux-imt/pinga
+module github.com/jkerdreux-imt/pinga
 
 go 1.25
 
