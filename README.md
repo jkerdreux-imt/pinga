@@ -18,14 +18,21 @@ hostname, average RTT, TXT records, and IPv6 addresses.
 
 Make sure you have Go installed (version 1.18+ recommended).
 
+Install from source:
+
 ```sh
-git clone https://github.com/yourusername/pinga.git
+git clone https://github.com/jkerdreux-imt/pinga.git
 cd pinga
 go mod tidy
 go build
 ```
-
 This will produce a `pinga` binary in the current directory.
+
+Install from GitHub directly:
+```sh
+go install github.com/jkerdreux-imt/pinga@latest
+```
+
 
 ## Usage
 
