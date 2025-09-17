@@ -114,7 +114,7 @@ func (a ByIPv4) Less(i, j int) bool {
 	ip1 := net.ParseIP(a[i]).To4()
 	ip2 := net.ParseIP(a[j]).To4()
 
-	for k := range net.IPv4len {
+	for k := 0; k < net.IPv4len; k++ {
 		if ip1[k] != ip2[k] {
 			return ip1[k] < ip2[k]
 		}
