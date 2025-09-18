@@ -8,6 +8,7 @@ hostname, average RTT, TXT records, and IPv6 addresses.
 ![Pinga](./shot.png)
 
 ## Features
+
 - Fast parallel pinging of IPs in a CIDR range
 - Colorized output for RTT (green/yellow/red)
 - Table or list display modes
@@ -26,13 +27,14 @@ cd pinga
 go mod tidy
 go build
 ```
+
 This will produce a `pinga` binary in the current directory.
 
 Install from GitHub directly:
+
 ```sh
 go install github.com/jkerdreux-imt/pinga@latest
 ```
-
 
 ## Usage
 
@@ -49,6 +51,7 @@ Scan with custom parallelism and list output:
 ```
 
 ### Command-line Options
+
 ```
 Usage of pinga:
   -cidr string
@@ -60,6 +63,7 @@ Usage of pinga:
 ```
 
 ## Dependencies
+
 - [cheggaaa/pb](https://github.com/cheggaaa/pb) (progress bar)
 - [fatih/color](https://github.com/fatih/color) (color output)
 - [go-pretty/table](https://github.com/jedib0t/go-pretty) (table rendering)
@@ -67,6 +71,7 @@ Usage of pinga:
 These are managed automatically via Go modules.
 
 ## Troubleshooting
+
 - Make sure you run as root or with sufficient privileges to send ICMP
   packets.
 - On some systems, the `ping` command may require special permissions.
